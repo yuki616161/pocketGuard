@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Expenses</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/addExpenses.css">
+    <script src="javaScript/addIncome.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <header class="headerMain">
+            <a href="home.html"><button class="back-button">‹</button></a>
+            <h1 class="title">New Transaction</h1>
+        </header>
+
+        <div class="header">
+            <a href="addIncome.html"><button class="tab active">
+                    <img src="images/income.png" alt="Income" class="tab-icon"> Income
+                </button></a>
+            <a href="addExpenses.html"><button class="tab">
+                    <img src="images/expense.png" alt="Expense" class="tab-icon"> Expense
+                </button></a>
+        </div>
+
+        <div class="input-group">
+            <label>Date</label>
+            <input type="date" id="date">
+        </div>
+
+        <div class="input-group">
+            <label>Amount</label>
+            <input type="text" id="amountIncome" placeholder="Amount" onclick="showCalculator()" readonly>
+        </div>
+
+        <div class="input-group">
+          <label>Category</label>
+          <div class="dropdown">
+              <button id="incomeCategoryBtn" class="dropdown-btn" onclick="toggleIncomeCategoryGrid()">Select Category</button>
+              <div id="categoryDropdown" class="dropdown-menu">
+                  <div class="category-grid">
+                      <div class="category-item" onclick="selectIncomeCategory('Allowance')">
+                          <img src="images/money-bag.png" alt="Allowance Icon" class="category-icon">
+                          <span>Allowance</span>
+                      </div>
+                      <div class="category-item" onclick="selectIncomeCategory('Salary')">
+                          <img src="images/salary.png" alt="Salary Icon" class="category-icon">
+                          <span>Salary</span>
+                      </div>
+                      <div class="category-item" onclick="selectIncomeCategory('Bonus')">
+                          <img src="images/bonus.png" alt="Bonus Icon" class="category-icon">
+                          <span>Bonus</span>
+                      </div>
+                      <div class="category-item" onclick="selectIncomeCategory('Pretty Cash')">
+                          <img src="images/money1.png" alt="Pretty Cash Icon" class="category-icon">
+                          <span>Pretty Cash</span>
+                      </div>
+                      <div class="category-item" onclick="selectIncomeCategory('Others')">
+                          <img src="images/money.png" alt="Others Icon" class="category-icon">
+                          <span>Others</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+
+        <div class="input-group">
+            <label>Account</label>
+            <input type="text" id="selectedAccountIncome" placeholder="Account" onclick="toggleAccountGrid()" readonly>
+
+        </div>
+         <!-- Account Selection Grid Dropdown -->
+    <div id="accountGrid" class="account-grid">
+        <div class="account-item" data-account="Cash" onclick="selectAccount('Cash', 'images/dollar.png')">
+          <img src="images/dollar.png" alt="CashIcon">
+          <p>Cash</p>
+        </div>
+        <div class="account-item" data-account="Bank Account" onclick="selectAccount('Bank Account', 'images/bank.png')">
+          <img src="images/bank.png" alt="BankIcon">
+          <p>Bank Account</p>
+        </div>
+        <div class="account-item" data-account="Card" onclick="selectAccount('Card', 'images/credit.png')">
+          <img src="images/credit.png" alt="CardIcon">
+          <p>Card</p>
+        </div>
+      </div>
+      
+
+        <div class="input-group">
+            <label>Description</label>
+            <input type="text" placeholder="Description" id="DescriptionIncome">
+        </div>
+
+        <!-- Calculator -->
+        <div id="calculator" class="calculator mt-3">
+            <div class="row">
+                <button class="number" onclick="inputKeypad('7')">7</button>
+                <button class="number" onclick="inputKeypad('8')">8</button>
+                <button class="number" onclick="inputKeypad('9')">9</button>
+                <button class="operation" onclick="inputKeypad('+')">+</button>
+            </div>
+            <div class="row">
+                <button class="number" onclick="inputKeypad('4')">4</button>
+                <button class="number" onclick="inputKeypad('5')">5</button>
+                <button class="number" onclick="inputKeypad('6')">6</button>
+                <button class="operation" onclick="inputKeypad('-')">-</button>
+            </div>
+            <div class="row">
+                <button class="number" onclick="inputKeypad('1')">1</button>
+                <button class="number" onclick="inputKeypad('2')">2</button>
+                <button class="number" onclick="inputKeypad('3')">3</button>
+                <button class="operation" onclick="inputKeypad('*')">×</button>
+            </div>
+            <div class="row">
+                <button class="number" onclick="inputKeypad('0')">0</button>
+                <button class="number" onclick="clearKeypad()">C</button>
+                <button class="operation" onclick="calculateKeypad()">=</button>
+                <button class="operation" onclick="inputKeypad('/')">÷</button>
+            </div>
+        </div>
+
+
+        <!-- Account Selection Grid -->
+        <div id="accountGrid" class="account-grid">
+            <div class="account-item" data-account="Cash">
+                <img src="images/dollar.png" alt="CashIcon">
+                <p>Cash</p>
+            </div>
+            <div class="account-item" data-account="Bank Account">
+                <img src="images/bank.png" alt="BankIcon">
+                <p>Bank Account</p>
+            </div>
+            <div class="account-item" data-account="Card">
+                <img src="images/credit.png" alt="CardIcon">
+                <p>Card</p>
+            </div>
+        </div>
+
+   
+            <button onclick="saveIncomeData()" type="button" class="btn btn-login">Save Income</button>
+   
+        
+
+    </div>
+</body>
+
+</html>

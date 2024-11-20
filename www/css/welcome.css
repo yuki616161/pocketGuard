@@ -1,0 +1,96 @@
+/* Skip Button Styling */
+.skip-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 1000;
+}
+
+.btn-skip {
+    background: linear-gradient(135deg, #5A6FE0, #FF7F50);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s;
+}
+
+.btn-skip:hover {
+    background-color: #e66645; /* Slightly darker shade of orange */
+}
+
+.btn-skip i {
+    font-size: 1.2rem; /* Icon size */
+}
+
+.carousel-item {
+    padding: 85px 20px 20px;
+}
+
+.carousel-image {
+    max-height: 320px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-caption {
+    position: static;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.btn-next,
+.btn-start {
+    width: 160px;
+    padding: 12px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.btn-next {
+    background-color: #5A6FE0;
+    color: #fff;
+    border: none;
+}
+
+.btn-start {
+    background-color: #191717;
+    color: #fff;
+    border: none;
+}
+
+.btn-next:hover,
+.btn-start:hover {
+    opacity: 0.9;
+}
+
+.carousel-indicators [data-bs-target] {
+    background-color: #ff7f50;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    filter: invert(0.7);
+}

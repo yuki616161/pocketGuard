@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Expense Tracker - Home</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/home.css">
+    <script src="javaScript/home.js" defer></script>
+</head>
+
+<body>
+    <!-- Home Section -->
+    <section id="home" class="content-section active">
+        <div class="welcome-container">
+            <div class="profile-container">
+                <!-- Profile image updates based on gender -->
+                <img id="profileImage" src="images/default.png" alt="Profile Image" class="profile-image">
+            </div>
+            <div class="welcome-text">
+                <!-- Dynamic greeting message -->
+                <h2 id="greetingMessage"></h2>
+                <h3>Welcome back, <span id="username">User</span>!</h3>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="total-balance">
+                <div class="balance-label">Total Balance</div>
+                <div class="balance-amount" id="totalBalance">RM 0.00</div>
+            </div>
+            <div class="income-expense">
+                <div class="income">
+                    <div class="amount" id="incomeAmount">RM 0.00</div>
+                    <div class="label">Income</div>
+                </div>
+                <div class="expense">
+                    <div class="amount" id="expenseAmount">RM 0.00</div>
+                    <div class="label">Expenses</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categories Card -->
+        <div class="card">
+            <div class="balance-label">Spending by Category</div>
+            <div class="category-list" id="categoryList"></div>
+        </div>
+    </section>
+
+    <!-- Loading Animation -->
+    <div id="loading" style="display: none;">
+        <i class="fas fa-spinner fa-spin"></i> Loading...
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+        <a href="home.html" class="nav-item active">
+            <i class="fas fa-home"></i>
+            Home
+        </a>
+        <a href="transactionList.html" class="nav-item">
+            <i class="fas fa-exchange-alt"></i>
+            Transactions
+        </a>
+        <a href="addExpenses.html" class="nav-item">
+            <i class="fas fa-plus-circle"></i>
+            Add
+        </a>
+        <a href="statistics.html" class="nav-item">
+            <i class="fas fa-chart-pie"></i>
+            Statistics
+        </a>
+        <a href="logout.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            Profile
+        </a>
+    </nav>
+    
+</body>
+
+</html>

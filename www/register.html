@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/register.css">
+    <script src="javaScript/register.js" defer></script>
+</head>
+
+<body>
+
+    <div class="register-container">
+        <!-- Back Button with Icon -->
+        <a href="login.html" class="btn btn-back mb-3">
+            <i class="bi bi-arrow-left"></i>
+        </a>
+
+        <!-- Logo Image Placeholder -->
+        <img src="images/appLogo.png" alt="Logo" class="register-logo">
+
+        <!-- Welcome Text -->
+        <h2 class="welcome-text">Create Your Account</h2>
+
+        <!-- Registration Form -->
+        <form id="registerForm" novalidate>
+            <!-- Username Input Field -->
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-person-circle"></i></span>
+                    <input type="text" id="username" class="form-control" placeholder="Username" required>
+                </div>
+                <div class="invalid-feedback">Please enter a username.</div>
+            </div>
+
+            <!-- First Name and Last Name Fields -->
+            <div class="row mb-3">
+                <div class="col-6">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                        <input type="text" id="firstName" class="form-control" placeholder="First Name" required>
+                    </div>
+                    <div class="invalid-feedback">Please enter your first name.</div>
+                </div>
+                <div class="col-6">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                        <input type="text" id="lastName" class="form-control" placeholder="Last Name" required>
+                    </div>
+                    <div class="invalid-feedback">Please enter your last name.</div>
+                </div>
+            </div>
+
+            <!-- Gender Selection Input Field -->
+            <div class="mb-3">
+                <label class="form-label">Gender</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-gender-ambiguous"></i></span>
+                    <div class="form-check form-check-inline ms-2">
+                        <input class="form-check-input" type="radio" name="gender" id="male" value="Male" required>
+                        <label class="form-check-label" for="male">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="female" value="Female" required>
+                        <label class="form-check-label" for="female">Female</label>
+                    </div>
+                </div>
+                <div class="invalid-feedback">Please select your gender.</div>
+            </div>
+
+
+            <!-- Email Address Input Field -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                    <input type="email" id="email" class="form-control" placeholder="Enter Email Address" required>
+                </div>
+                <div id="emailError" class="invalid-feedback">
+                    Please enter a valid email address (e.g., name@example.com).
+                </div>
+            </div>
+
+            <!-- Password Input Field -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                    <input type="password" id="password" class="form-control" placeholder="Enter Password" required>
+                    <span class="input-group-text"><i class="bi bi-eye-slash" id="togglePassword"></i></span>
+                </div>
+                <div id="passwordError" class="invalid-feedback">
+                    Password must be at least 8 characters long, include an uppercase letter, a number, and a special
+                    character.
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-register">Continue</button>
+        </form>
+    </div>
+
+</body>
+
+</html>
