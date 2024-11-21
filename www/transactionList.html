@@ -5,14 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/list.css">
     <script src="javaScript/transactionList.js" defer></script>
-    <title>TransactionList</title>
-
+    <title>Transaction List</title>
 </head>
 <body>
     <div class="transactionList-container">
-        <h1>Transaction List</h1>
-        <div id="transactionList"></div>
+        <header class="headerMain">
+            <a href="home.html"><button class="back-button">‹</button></a>
+            <h1 class="title">Transactions</h1>
+        </header>
+        
+        <div class="tlist-container">
+            <div class="filter-buttons">
+                <button class="filter-button" id="filter-month">Month</button>
+                <button class="filter-button" id="filter-all">All</button>
+            </div>
+            
+        </div>
+        <div id="transactionList" class="transaction-list"></div>
     </div>
-    
 </body>
 </html>

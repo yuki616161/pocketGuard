@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Statistics</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/statistic.css">
+    <script src="javaScript/statistic.js" defer></script>
+
+    
+</head>
+<body>
+    <header class="headerMain">
+        <a href="home.html"><button class="back-button">‹</button></a>
+        <h1 class="title">Transaction Statistics</h1>
+    </header>
+    <main>
+        <div class="expInc-container">
+            <!-- Tabs -->
+            <div class="tabs">
+                <div class="tab active" data-tab="expenses">Expense</div>
+                <div class="tab" data-tab="income">Income</div>
+            </div>
+
+            <!-- Expense List -->
+            <div id="expenses" class="transaction-list"></div>
+
+            <!-- Income List -->
+            <div id="income" class="transaction-list" style="display: none;"></div>
+        </div>
+        
+
+        <div class="chart-container">
+            <h2>Transactions by Category</h2>
+            <canvas id="categoryPieChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <h2>Transactions Over Time</h2>
+            <canvas id="userBarChart"></canvas>
+        </div>
+
+        
+    </main>
+
+</body>
+</html>
