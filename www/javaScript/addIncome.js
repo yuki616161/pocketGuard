@@ -6,37 +6,37 @@ tabs.forEach(tab => {
     });
 }); 
        
-       // Calculator Functions
-       const calculator = document.getElementById("calculator");
+// Calculator Functions
+const calculator = document.getElementById("calculator");
 
-       function inputKeypad(value) {
-           const amountField = document.getElementById('amountIncome');
-           amountField.value += value;
-       }
+function inputKeypad(value) {
+    const amountField = document.getElementById('amountIncome');
+    amountField.value += value;
+}
        
-       function clearKeypad() {
-           document.getElementById('amountIncome').value = '';
-       }
+function clearKeypad() {
+    document.getElementById('amountIncome').value = '';
+}
        
-       function calculateKeypad() {
-           const amountField = document.getElementById('amountIncome');
-           try {
-               amountField.value = eval(amountField.value);
-               hideCalculator();
-           } catch {
-               amountField.value = 'Error';
-           }
-       }
+function calculateKeypad() {
+    const amountField = document.getElementById('amountIncome');
+    try {
+            amountField.value = eval(amountField.value);
+        hideCalculator();
+        } catch {
+            amountField.value = 'Error';
+        }
+}
        
-       function showCalculator() {
-           calculator.style.display = "grid"; // Show the calculator
-       }
+function showCalculator() {
+    calculator.style.display = "grid"; // Show the calculator
+}
        
-       function hideCalculator() {
-           calculator.style.display = "none"; // Hide the calculator
-       }
+function hideCalculator() {
+    calculator.style.display = "none"; // Hide the calculator
+}
        
-       // Automatically calculate when the amount field loses focus
+// Automatically calculate when the amount field loses focus
 document.getElementById('amountIncome').addEventListener('blur', function () {
     const amountField = document.getElementById('amountIncome');
     try {
@@ -49,12 +49,13 @@ document.getElementById('amountIncome').addEventListener('blur', function () {
         amountField.value = 'Error'; // Set error if the expression is invalid
     }
 });
-       // General Click Event for Outside Click Handling
-       window.addEventListener("click", function (event) {
-           if (!event.target.closest("#calculator") && !event.target.closest("#amountIncome")) {
-               hideCalculator();
-           }
-       });
+       
+// General Click Event for Outside Click Handling
+window.addEventListener("click", function (event) {
+    if (!event.target.closest("#calculator") && !event.target.closest("#amountIncome")) {
+        hideCalculator();
+    }
+});
        
 function toggleIncomeCategoryGrid() {
     const categoryGrid = document.getElementById('incomeCategoryGrid');
@@ -62,14 +63,14 @@ function toggleIncomeCategoryGrid() {
     ? 'block' : 'none';
 }
     
-    function selectIncomeCategory(category) {
-        const button = document.getElementById('incomeCategoryBtn');
-        button.textContent = category; // Set the selected category as the button text
-        document.getElementById('incomeCategoryGrid').style.display = 'none'; // Hide the dropdown
-    }
+function selectIncomeCategory(category) {
+    const button = document.getElementById('incomeCategoryBtn');
+    button.textContent = category; // Set the selected category as the button text
+    document.getElementById('incomeCategoryGrid').style.display = 'none'; // Hide the dropdown
+}
           
        
-  //Account Grid
+//Account Grid
 function toggleAccountGrid() {
     const accountGrid = document.getElementById('accountGrid');
     accountGrid.style.display = accountGrid.style.display === 'none' || accountGrid.style.display === ''
