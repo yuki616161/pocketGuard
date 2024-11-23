@@ -15,6 +15,7 @@ body {
 
 .transactionList-container {
     padding: 16px;
+    
 }
 
 /* Header */
@@ -78,7 +79,7 @@ body {
     margin-top: 15px;
     font-weight: bold;
     color: #fff;
-    background: linear-gradient(to right, #5A6FE0, #FF7F50);
+    background: #5A6FE0;
     border: none;
     border-radius: 12px;
     cursor: pointer;
@@ -176,3 +177,4 @@ body {
 .transaction-actions button:hover {
     text-decoration: underline;
 }
+
