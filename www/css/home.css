@@ -27,30 +27,36 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    margin-top: -30px;
-    margin-left: -50px;
+    padding: 10px;
+    margin-top: -10px;
+    margin-left: -35px;
 }
 
-.profile-container {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: 15px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+.profile-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* Circular shape */
+    object-fit: cover; /* Ensures the image fits properly */
+    margin-left: 100%; /* Pushes the image to the right */
+    display: block;
+    background-color: #ff4d4d; /* Adds a background color */
+    border: 2px solid #f0f0f0; /* Keeps the border */
 }
-
-#profileImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+  
+  /* Container styling */
+  .profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Aligns content to the right */
+    padding: 0.5rem 1rem;
+    gap: 1rem; /* Adds space between elements */
+  }
 
 /* Welcome Text Styling */
 .welcome-text {
     font-family: 'Poppins', sans-serif;
-    color: #5A6FE0; /* Using your color palette */
+    color: #5A6FE0;
+    /* Using your color palette */
     text-align: left;
 }
 
@@ -62,7 +68,8 @@ body {
 /* Username Styling */
 #username {
     font-weight: bold;
-    color: #F49A73; /* Accent color from your palette */
+    color: #F49A73;
+    /* Accent color from your palette */
 }
 
 .card {
@@ -97,7 +104,8 @@ body {
     border-top: 1px solid #eee;
 }
 
-.income, .expense {
+.income,
+.expense {
     text-align: center;
     flex: 1;
 }
@@ -125,7 +133,8 @@ body {
     font-size: 14px;
 }
 
-.form-group input, .form-group select {
+.form-group input,
+.form-group select {
     width: 100%;
     padding: 8px;
     border: 1px solid #ddd;
@@ -226,4 +235,112 @@ body {
 .progress-fill {
     height: 100%;
     background: #2ecc71;
+}
+
+.recent-transactions-container {
+    margin-top: 20px;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.recent-transactions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Ensures items are vertically aligned */
+}
+
+.recent-transactions-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.see-all-button {
+    background-color: #5A6FE0;
+    /* Main app color */
+    color: #fff;
+    padding: 8px 20px;
+    text-decoration: none;
+    border-radius: 25px;
+    /* Rounded corners for a modern look */
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    /* Smooth transition effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Adds subtle shadow for depth */
+}
+
+.see-all-button:hover {
+    background-color: #4a5bde;
+    /* Slightly darker blue on hover */
+    transform: translateY(-2px);
+    /* Subtle lift effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    /* Slightly deeper shadow on hover */
+}
+
+
+.see-all-button:focus {
+    outline: none;
+    /* Removes default outline */
+    border: 2px solid #fff;
+    /* Adds a white border for focus */
+}
+
+.recent-transactions-list {
+    margin-top: 10px;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f1f1;
+    align-items: center;
+}
+
+.transaction-item:last-child {
+    border-bottom: none;
+}
+
+.transaction-category {
+    color: #555;
+    flex-basis: 30%;
+    /* Adjusts the space taken by the category */
+}
+
+.transaction-description {
+    flex-grow: 1;
+    margin-left: 10px;
+    color: #777;
+    text-align: left;
+}
+
+.transaction-amount {
+    font-weight: bold;
+    text-align: right;
+    /* Align the amount to the right */
+    width: 120px;
+    /* Fixed width for the amount column */
+    display: flex;
+    justify-content: flex-end;
+}
+
+.transaction-amount.income {
+    color: #4caf50;
+    /* Green for income */
+}
+
+.transaction-amount.expense {
+    color: #f44336;
+    /* Red for expense */
+}
+
+.transaction-item>div {
+    padding-right: 10px;
+    /* To ensure items don't touch the edges */
 }

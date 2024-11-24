@@ -22,6 +22,45 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
+.headerMain {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background-color: white;
+    border-bottom: 1px solid #f0f0f0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.back-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 8px;
+    color: #000;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #1e1e1e;
+    flex-grow: 1;
+    text-align: center;
+    margin: 0 16px;
+}
+
 /* Header */
 h1 {
     color: #34495e;
@@ -34,17 +73,19 @@ h1 {
 .goals-list {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 10px;
+    margin-top: 12%; /* Add margin to move all cards down */
 }
 
 /* Goal Card */
 .goal-card {
     background-color: #f9f9f9;
-    padding: 20px;
+    padding: 30px;
     border-radius: 12px;
     border-left: 5px solid #5A6FE0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 20px;
 }
 
 .goal-card:hover {
@@ -68,16 +109,23 @@ h1 {
 }
 
 .progress-container {
-    background-color: #f3f3f3;
-    border-radius: 15px;
-    height: 20px;
-    margin: 10px 0;
+    background-color: #e0e0e0; /* Neutral background for contrast */
+    border-radius: 20px; /* Smoother, modern round edges */
+    height: 24px; /* Slightly taller for better visibility */
+    margin: 12px 0;
     width: 100%;
+    overflow: hidden; /* Ensure the bar stays within the rounded edges */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+    position: relative;
 }
 
-.progress-text{
+.progress-text {
+    width: 100%;
     text-align: center;
     font-weight: bold;
+    color: #2c3e50; /* Dark text for contrast */
+    font-size: 0.rem;
+    z-index: 1;
 }
 
 .progress-bar {
@@ -102,19 +150,26 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #5A6FE0, #FF7F50); /* Subtle gradient background */
+    background: linear-gradient(135deg, #5A6FE0, #FF7F50);
+    /* Subtle gradient background */
     color: white;
-    font-size: 28px; /* Slightly smaller font size for a more subtle look */
-    width: 50px; /* Adjust size to keep it compact */
-    height: 50px; /* Keep it consistent with the width */
-    border-radius: 50%; /* Circular shape */
+    font-size: 28px;
+    /* Slightly smaller font size for a more subtle look */
+    width: 50px;
+    /* Adjust size to keep it compact */
+    height: 50px;
+    /* Keep it consistent with the width */
+    border-radius: 50%;
+    /* Circular shape */
     position: fixed;
     bottom: 20px;
     right: 20px;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Softer shadow for a more subtle effect */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* Softer shadow for a more subtle effect */
     transition: background 0.3s, box-shadow 0.3s;
-    text-decoration: none; /* Remove underline from link */
+    text-decoration: none;
+    /* Remove underline from link */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -122,14 +177,17 @@ h1 {
 
 /* Hover effect */
 .add-btn:hover {
-    background: linear-gradient(135deg, #FF7F50, #5A6FE0); /* Slight color change on hover */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Lighter shadow */
+    background: linear-gradient(135deg, #FF7F50, #5A6FE0);
+    /* Slight color change on hover */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    /* Lighter shadow */
 }
 
 /* Add icon styles */
 .add-btn-icon {
     font-weight: bold;
-    font-size: 28px; /* Keep the icon size consistent with the button */
+    font-size: 28px;
+    /* Keep the icon size consistent with the button */
     color: white;
     text-align: center;
     line-height: 1;
@@ -137,14 +195,18 @@ h1 {
 
 /* Optional: Add focus effect for accessibility */
 .add-btn:focus {
-    outline: none; /* Remove default outline */
-    box-shadow: 0 0 5px 2px rgba(52, 152, 219, 0.5); /* Subtle focus outline */
+    outline: none;
+    /* Remove default outline */
+    box-shadow: 0 0 5px 2px rgba(52, 152, 219, 0.5);
+    /* Subtle focus outline */
 }
 
 /* Optional: Add focus effect for accessibility */
 .add-btn:focus {
-    outline: none; /* Remove default outline */
-    box-shadow: 0 0 5px 2px rgba(52, 152, 219, 0.7); /* Custom focus outline */
+    outline: none;
+    /* Remove default outline */
+    box-shadow: 0 0 5px 2px rgba(52, 152, 219, 0.7);
+    /* Custom focus outline */
 }
 
 /* No Goals Message */
@@ -156,26 +218,42 @@ h1 {
     font-style: italic;
 }
 
-/* Action Buttons */
-.edit-btn, .delete-btn {
-    padding: 10px 16px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: bold;
-    transition: background-color 0.3s, box-shadow 0.3s;
+/* Button Container */
+.button-container {
+    display: flex; /* Use flexbox to align buttons in one row */
+    gap: 12px; /* Add spacing between buttons */
+    justify-content: flex-start; /* Align buttons to the left */
+    align-items: center; /* Ensure vertical alignment */
 }
 
+/* Action Buttons */
+.edit-btn,
+.delete-btn {
+    padding: 12px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: inline-block; /* Ensure buttons behave as inline elements */
+}
+
+/* Edit Button */
 .edit-btn {
-    background: #5A6FE0;
+    background: linear-gradient(135deg, #5A6FE0, #4a5bde);
     color: white;
 }
 
 .edit-btn:hover {
-    background: #4656ad;;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #4a5bde, #3946b3);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
 }
 
+/* Delete Button */
 .delete-btn {
     background: linear-gradient(135deg, #e74c3c, #c0392b);
     color: white;
@@ -183,7 +261,22 @@ h1 {
 
 .delete-btn:hover {
     background: linear-gradient(135deg, #c0392b, #992d22);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Responsive Design for Small Screens */
+@media (max-width: 600px) {
+    .button-container {
+        flex-direction: column; /* Stack buttons vertically on small screens */
+        gap: 8px;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        width: 40%; /* Full width for better usability */
+        text-align: center;
+    }
 }
 
 /* Responsive Design */
@@ -206,7 +299,8 @@ h1 {
         font-size: 24px;
     }
 
-    .edit-btn, .delete-btn {
+    .edit-btn,
+    .delete-btn {
         font-size: 0.8rem;
         padding: 8px 12px;
     }

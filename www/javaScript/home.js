@@ -146,3 +146,52 @@ function showSection(sectionId, navItem) {
 
 // Initialize
 updateBalance();
+
+function displayRecentTransactions() {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (!loggedInUser) return;
+
+    const userTransactionsKey = `transactions_${loggedInUser}`;
+    const transactions = JSON.parse(localStorage.getItem(userTransactionsKey)) || [];
+
+    // Sort by date (most recent first)
+    const sortedTransactions = transactions.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    // Limit to 5 recent transactions
+    const recentTransactions = sortedTransactions.slice(0, 5);
+
+    const recentTransactionsContainer = document.getElementById('recentTransactions');
+    recentTransactionsContainer.innerHTML = ''; // Clear existing content
+
+    if (recentTransactions.length === 0) {
+        recentTransactionsContainer.innerHTML = '<p>No recent transactions.</p>';
+        return;
+    }
+
+    // Populate recent transactions
+    recentTransactions.forEach(transaction => {
+        const transactionItem = document.createElement('div');
+        transactionItem.classList.add('transaction-item');
+
+        // Determine icon path based on the category
+        const iconPath = `images/${transaction.category.toLowerCase()}.png`;
+
+        transactionItem.innerHTML = `
+            <div class="transaction-icon">
+                <img src="${iconPath}" alt="${transaction.category}" class="category-icon">
+            </div>
+            <div class="transaction-details">
+                <div class="transaction-category">${transaction.category}</div>
+                <div class="transaction-description">${transaction.description}</div>
+            </div>
+            <div class="transaction-amount ${transaction.type === 'income' ? 'income' : 'expense'}">
+                ${transaction.type === 'income' ? '+' : '-'} RM${transaction.amount}
+            </div>
+        `;
+
+        recentTransactionsContainer.appendChild(transactionItem);
+    });
+}
+
+// Call on page load
+document.addEventListener('DOMContentLoaded', displayRecentTransactions);

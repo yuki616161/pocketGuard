@@ -13,11 +13,6 @@ body {
     color: #333;
 }
 
-.transactionList-container {
-    padding: 16px;
-    
-}
-
 /* Header */
 .headerMain {
     display: flex;
@@ -77,11 +72,12 @@ body {
 .filter-button {
     padding: 14px;
     margin-top: 15px;
+    width: 100px;
     font-weight: bold;
     color: #fff;
     background: #5A6FE0;
     border: none;
-    border-radius: 12px;
+    border-radius: 30px;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s;
@@ -91,8 +87,13 @@ body {
     opacity: 0.8;
 }
 
+/*Transaction List*/
 
-/* Transaction List */
+.transactionList-container {
+    padding: 16px;
+    
+}
+
 .transaction-list {
     margin-top: 16px;
 }
@@ -127,8 +128,40 @@ body {
 /* Category Section */
 .category-section {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 12px;
     flex: 1;
+    text-align: 10px; /* Center the text horizontally */
+    margin-top: 5px; /* Add spacing between icon and text */
+  }
+
+/* General styles for icon-circle */
+.icon-circle {
+    width: 60px; /* Adjust size of the circle */
+    height: 60px;
+    border-radius: 50%; /* Makes the container circular */
+    display: flex;
+    align-items: center; /* Center the icon vertically */
+    justify-content: center; /* Center the icon horizontally */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin-right: 10px; /* Spacing to the right of the icon */
+    flex-direction: column;
+}
+
+/* Background color for income icons */
+.icon-circle.income {
+    background-color: #5a6ee029; /* Blue color for income */
+}
+
+/* Background color for expense icons */
+.icon-circle.expense {
+    background-color: #ff7f5049; /* Coral color for expenses */
+}
+
+/* Icon inside the circle */
+.category-icon {
+    width: 30px; /* Size of the icon */
+    height: 30px;
+    object-fit: contain; /* Ensures the icon fits well */
 }
 
 /* Details Section */
@@ -176,5 +209,20 @@ body {
 
 .transaction-actions button:hover {
     text-decoration: underline;
+}
+
+.button-container {
+    display: flex;
+    gap: 8px;  /* Adds space between buttons */
+  }
+  
+  .button-container .edit-btn, .button-container .delete-btn {
+    font-size: 14px;
+    padding: 8px 12px; /* Adjust padding */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    display: inline-flex; /* Ensure buttons are inline */
 }
 

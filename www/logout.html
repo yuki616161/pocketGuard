@@ -1,44 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logout Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 100px;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <title>Profile Details</title>
+    <link rel="stylesheet" href="css/logout.css"> <!-- Add your styles here -->
+    <script src="https://kit.fontawesome.com/3e586631e1.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-
-    <h1>Welcome to the Dashboard</h1>
-    <p>You are logged in!</p>
-    <button id="logoutBtn">Logout</button>
-
-    <script>
-        // Logout functionality
-        document.getElementById("logoutBtn").addEventListener("click", function () {
+    <div id="profile-details-page">
+        <!-- Container for the two cards -->
+        <div class="profile-container">
             
-            // Redirect to the login page or home page
-            window.location.href = 'index.html'; // You can change this to your login page URL
-        });
-    </script>
+            <header class="headerMain">
+                <a href="home.html"><button class="back-button">‹</button></a>
+                <h1 class="title">Profile</h1>
+            </header>
+    
+            <!-- First Card: Profile Header -->
+            <div class="profile-card profile-header-card">
+                <img id="profileImage" src="images/default.png" alt="Profile Image">
+                <h2 id="profileUsername">User</h2>
+                <p class="account-type">Personal Account</p>
+                <button id="logoutButton" class="logout-button"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+            </div>
+
+            <!-- Second Card: Profile Details -->
+            <div class="profile-card profile-details-card">
+                <h3>Profile Details</h3>
+                <p><i class="fa-solid fa-user"></i> Username: <span id="detailUsername">-</span></p>
+                <p><i class="fa-solid fa-envelope"></i> Email: <span id="detailEmail">-</span></p>
+                <p><i class="fa-solid fa-venus-mars"></i> Gender: <span id="detailGender">-</span></p>
+            </div>
+            
+        </div>
+    </div>
+    <script src="javaScript/logout.js"></script>
 </body>
+
 </html>
