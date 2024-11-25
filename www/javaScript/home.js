@@ -40,112 +40,90 @@ document.addEventListener("DOMContentLoaded", () => {
     loadingElement.style.display = "none";
 });
 
-// Initialize income, expenses, and categories with image paths
-let totalIncome = 0;
-let totalExpenses = 0;
-let categories = {
-    food: { icon: 'images/burger.png', amount: 0, label: 'Food' },
-    transportation: { icon: 'images/car.png', amount: 0, label: 'Transportation' },
-    shopping: { icon: 'images/shopping-cart.png', amount: 0, label: 'Shopping' },
-    health: { icon: 'images/healthcare.png', amount: 0, label: 'Health' },
-    entertainment: { icon: 'images/entertainmentIcon.png', amount: 0, label: 'Entertainment' },
-    utilities: { icon: 'images/utilities.png', amount: 0, label: 'Utilities' },
-    beauty: { icon: 'images/cosmetics.png', amount: 0, label: 'Beauty' },
-    pets: { icon: 'images/pet-food.png', amount: 0, label: 'Pets' },
-    culture: { icon: 'images/painting.png', amount: 0, label: 'Culture' },
-    apparel: { icon: 'images/laundry.png', amount: 0, label: 'Apparel' },
-    education: { icon: 'images/book.png', amount: 0, label: 'Education' },
-    gift: { icon: 'images/gift.png', amount: 0, label: 'Gift' },
-    social_life: { icon: 'images/socialLifeIcon.png', amount: 0, label: 'Social Life' },
-    household: { icon: 'images/household.png', amount: 0, label: 'Household' },
-    others: { icon: 'images/boxes.png', amount: 0, label: 'Others' }
-};
-
-// Show/hide category selection based on transaction type
-$('#type').change(function () {
-    if ($(this).val() === 'expense') {
-        $('#categoryGroup').show();
-    } else {
-        $('#categoryGroup').hide();
-    }
-});
-
-function updateBalance() {
-    const totalBalance = totalIncome - totalExpenses;
-
-    $('#totalBalance').text('RM' + totalBalance.toFixed(2)); // Display currency in RM
-    $('#incomeAmount').text('RM' + totalIncome.toFixed(2));
-    $('#expenseAmount').text('RM' + totalExpenses.toFixed(2));
-
-    updateCategories();
-}
-
-function updateCategories() {
-    const categoryList = $('#categoryList');
-    categoryList.empty();
-
-    // Only show categories with amounts > 0
-    Object.entries(categories)
-        .filter(([_, data]) => data.amount > 0)
-        .sort((a, b) => b[1].amount - a[1].amount)
-        .forEach(([category, data]) => {
-            const percentage = (data.amount / totalExpenses * 100).toFixed(1);
-
-            const categoryHtml = `
-                <div class="category-item">
-                    <div class="category-info">
-                        <div class="category-icon">${data.icon}</div>
-                        <div class="category-detail">
-                            <div class="category-name">${category.charAt(0).toUpperCase() + category.slice(1)}</div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: ${percentage}%; background: ${data.color}"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="category-amount">RM${data.amount.toFixed(2)}</div>
-                </div>
-            `;
-            categoryList.append(categoryHtml);
-        });
-}
-
-function addTransaction() {
-    const amount = parseFloat($('#amount').val());
-    const type = $('#type').val();
-    const category = $('#category').val();
-
-    if (isNaN(amount) || amount <= 0) {
-        alert('Please enter a valid amount');
+document.addEventListener('DOMContentLoaded', () => {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (!loggedInUser) {
+        alert("User is not logged in. Please log in first.");
         return;
     }
 
-    if (type === 'income') {
-        totalIncome += amount;
-    } else {
-        totalExpenses += amount;
-        categories[category].amount += amount;
+    const userTransactionsKey = `transactions_${loggedInUser}`;
+    const transactions = JSON.parse(localStorage.getItem(userTransactionsKey)) || [];
+
+    if (transactions.length === 0) {
+        alert("No transactions found for the logged-in user.");
+        return;
     }
 
-    updateBalance();
+    // Prepare data for the list (Category Data)
+    function prepareCategoryData(transactions) {
+        return transactions.reduce((acc, transaction) => {
+            acc[transaction.category] = (acc[transaction.category] || 0) + parseFloat(transaction.amount);
+            return acc;
+        }, {});
+    }
 
-    // Clear form
-    $('#amount').val('');
-    $('#type').val('income');
-    $('#categoryGroup').hide();
+    // Assigning an icon for each category
+    function getCategoryIcon(category) {
+        const icons = {
+            "Food": "images/food.png",
+            "Transportation": "images/transportation.png",
+            "Entertainment": "images/entertainment.png",
+            "Bonus": "images/bonus.png",
+            "Shopping": "images/shopping.png",
+            "Health": "images/health.png",
+            "Other": "images/others.png",
+            "Allowance": "images/allowance.png",
+            "Salary": "images/salary.png",
+            "Pretty Cash": "images/pretty cash.png",
+            "Others": "images/others1.png",
+            "Utilities": "images/utilities.png",
+            "Beauty": "images/beauty.png",
+            "Pets": "images/pets.png",
+            "Culture": "images/culture.png",
+            "Apparel": "images/apparel.png",
+            "Education": "images/education.png",
+            "Gift": "images/gift.png",
+            "Social Life": "images/social life.png",
+            "Household": "images/household.png"
+        };
+        
+        return icons[category] || "images/default.png"; // Default icon if not found
+    }    
 
-    // Switch to home section
-    showSection('home', document.querySelector('.nav-item'));
-}
+    // Generate the category cards
+    function generateCategoryCards(transactions) {
+        const categoryData = prepareCategoryData(transactions);
+        const categoryListContainer = document.getElementById('categoryListContainer');
+        categoryListContainer.innerHTML = ''; // Clear previous list
+    
+        Object.keys(categoryData).forEach(category => {
+            const card = document.createElement('div');
+            card.classList.add('categoryCard');
+    
+            // Icon for each category (using image)
+            const categoryIcon = document.createElement('div');
+            categoryIcon.classList.add('categoryIcon');
+            const iconPath = getCategoryIcon(category);
+            categoryIcon.innerHTML = `<img src="${iconPath}" alt="${category} Icon" class="category-icon">`;
+    
+            const categoryName = document.createElement('span');
+            categoryName.textContent = category;
+    
+            const categoryAmount = document.createElement('div');
+            categoryAmount.classList.add('categoryAmount');
+            categoryAmount.textContent = `RM ${categoryData[category].toFixed(2)}`;
+    
+            card.appendChild(categoryIcon);
+            card.appendChild(categoryName);
+            card.appendChild(categoryAmount);
+            categoryListContainer.appendChild(card);
+        });
+    }    
 
-function showSection(sectionId, navItem) {
-    $('.content-section').removeClass('active');
-    $('.nav-item').removeClass('active');
-    $('#' + sectionId).addClass('active');
-    $(navItem).addClass('active');
-}
-
-// Initialize
-updateBalance();
+    // Generate the category cards when the page loads
+    generateCategoryCards(transactions);
+});
 
 function displayRecentTransactions() {
     const loggedInUser = localStorage.getItem('loggedInUser');
