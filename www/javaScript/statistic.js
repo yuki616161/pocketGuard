@@ -45,19 +45,54 @@ document.addEventListener('DOMContentLoaded', () => {
                 labels: categoryLabels,
                 datasets: [{
                     data: categoryValues,
-                    backgroundColor: ['#5A6FE0', '#B7D5F0', '#F6D7F9', '#F9D4D2', '#D49A73', '#191717']
+                    backgroundColor: [
+                        '#6BA0D6', '#A7D8C2', '#C8A7D4', '#F7B79D', '#F1A7B1', '#B0B0B0',
+                        '#D8A1B2', '#B5E6D6', '#D4A1C5', '#F7A6A3', '#A0D8B1', '#6CCB5A',
+                        '#F5E17D', '#E1E1E1', '#C9A6D3', '#B8BFA4', '#F2A38C', '#D1C8B3',
+                        '#F0E4D7', '#6A7C8B'
+                    ]
                 }]
             },
             options: {
                 responsive: true,
                 plugins: {
                     legend: {
-                        position: 'top',
-                        labels: { font: { size: 12 } }
+                        display: false // Hide default legend to create custom legend
                     }
                 }
             }
         });
+
+        // Remove any existing legend before creating a new one
+        const existingLegend = document.querySelector('.chart-legend');
+        if (existingLegend) {
+            existingLegend.remove();
+        }
+
+        // Custom legend generation
+        const legendContainer = document.createElement('div');
+        legendContainer.classList.add('chart-legend');
+
+        // Loop through each label and color to create custom legend items
+        categoryLabels.forEach((label, index) => {
+            const legendItem = document.createElement('div');
+            legendItem.classList.add('legend-item');
+
+            const colorBox = document.createElement('div');
+            colorBox.classList.add('legend-color');
+            colorBox.style.backgroundColor = pieChart.data.datasets[0].backgroundColor[index];
+
+            const labelText = document.createElement('span');
+            labelText.textContent = label;
+
+            legendItem.appendChild(colorBox);
+            legendItem.appendChild(labelText);
+            legendContainer.appendChild(legendItem);
+        });
+
+        // Append the custom legend below the chart
+        document.querySelector('.chart-container').appendChild(legendContainer);
+
 
         // Bar Chart
         const groupedByDate = prepareDateData(transactions);
@@ -100,6 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const listItem = document.createElement('div');
             listItem.classList.add('transaction-item');
 
+            // Create label with category and color dot
             const label = document.createElement('div');
             label.classList.add('transaction-label');
             label.innerHTML = `
@@ -107,13 +143,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span>${transaction.category}</span>
             `;
 
+            // Create amount element
             const amount = document.createElement('div');
             amount.classList.add('transaction-amount');
-            amount.textContent = `${transaction.type === 'income' ? '+' : '-'} ${transaction.amount}`;
 
+            // Dynamically apply color based on transaction type
+            if (transaction.type === 'expense') {
+                amount.classList.add('expense'); // Apply red color for expenses
+            } else {
+                amount.classList.add('income'); // Apply green color for income
+            }
+
+            amount.textContent = `${transaction.type === 'income' ? '+' : '-'} RM${transaction.amount}`;
+
+            // Append label and amount to list item
             listItem.appendChild(label);
             listItem.appendChild(amount);
 
+            // Append list item to the correct list
             if (transaction.type === 'expense') {
                 expenseList.appendChild(listItem);
             } else {
@@ -126,10 +173,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (period === 'all') {
             return transactions; // Return all transactions without filtering
         }
-    
+
         const now = new Date();
         const startOfPeriod = new Date();
-    
+
         if (period === 'week') {
             startOfPeriod.setDate(now.getDate() - 7);
         } else if (period === 'month') {
@@ -137,13 +184,13 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (period === 'year') {
             startOfPeriod.setFullYear(now.getFullYear() - 1);
         }
-    
+
         return transactions.filter(transaction => {
             const transactionDate = new Date(transaction.date);
             return transactionDate >= startOfPeriod;
         });
     }
-    
+
 
     // Tabs functionality
     const tabs = document.querySelectorAll('.tabs .tab');

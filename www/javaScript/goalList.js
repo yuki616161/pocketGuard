@@ -12,16 +12,16 @@ document.addEventListener('DOMContentLoaded', function () {
         const total = Date.parse(deadline) - now.getTime(); // Both in milliseconds
         const days = Math.floor(total / (1000 * 60 * 60 * 24));
         const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
-    
+
         console.log("Now:", now, "Deadline:", new Date(deadline)); // Debug log
-    
+
         return {
             total,
             days,
             hours,
             isExpired: total < 0
         };
-    }    
+    }
 
     // Function to format amount as currency (changed from USD to MYR)
     function formatMoney(amount) {
@@ -47,12 +47,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to determine the color of the progress bar based on the percentage
     function getProgressColor(progress) {
-        if (progress >= 90) return '#27ae60'; // Green
-        if (progress >= 70) return '#2ecc71'; // Light Green
-        if (progress >= 50) return '#f1c40f'; // Yellow
-        if (progress >= 30) return '#e67e22'; // Orange
-        return '#e74c3c'; // Red
-    }
+        if (progress >= 90) return '#2ecc71'; // Emerald Green - High achievement
+        if (progress >= 70) return '#27ae60'; // Strong Green - Good progress
+        if (progress >= 50) return '#f39c12'; // Golden Yellow - Average progress
+        if (progress >= 30) return '#f39c12'; // Warm Amber - Need attention
+        return '#e74c3c'; // Red - Critical, below expectations
+    }    
 
     // Function to render the goals in the list
     function renderGoals() {

@@ -42,7 +42,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const dateHeader = document.createElement("div");
             dateHeader.classList.add("date-header");
-            dateHeader.textContent = date;
+
+            // Convert date to desired format
+            const formattedDate = new Date(date).toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            });
+
+            // Add calendar icon and date
+            dateHeader.innerHTML = `📅 ${formattedDate}`;
 
             dateCard.appendChild(dateHeader);
 
@@ -52,21 +61,30 @@ document.addEventListener("DOMContentLoaded", () => {
                 transactionItem.dataset.id = transaction.id; // Set the ID as a data attribute
 
                 transactionItem.innerHTML = `
-                    <div class="category-section">${transaction.category}</div>
-                    <div class="details-section">
-                        <div class="transaction-account">${transaction.account}</div>
-                        <div class="transaction-description">${transaction.description}</div>
-                    </div>
-                    <div class="transaction-actions">
-                        <span class="transaction-amount ${transaction.type === 'income' ? 'income' : 'expense'}">
-                            <span class="sign">${transaction.type === 'income' ? '+' : '-'}</span> 
-                            <span class="amount">RM${transaction.amount}</span>
-                        </span>
+            <div class="category-section">
+                <div class="icon-circle ${transaction.type === 'income' ? 'income' : 'expense'}">
+            <img src="images/${transaction.category.toLowerCase()}.png" alt="${transaction.category}" class="category-icon">
+                </div>
+                <div class="category-section">${transaction.category}</div>
+                </div>
+            <div class="details-section">
+                <div class="transaction-account">${transaction.account}</div>
+                <div class="transaction-description">${transaction.description}</div>
+            </div>
+            <div class="transaction-actions">
+                <span class="transaction-amount ${transaction.type === 'income' ? 'income' : 'expense'}">
+                    <span class="sign">${transaction.type === 'income' ? '+' : '-'}</span> 
+                    <span class="amount">RM${transaction.amount}</span>
+                </span>
 
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
-                    </div>
-                `;
+                <div class="button-container">
+                <button class="edit-btn">Edit</button>
+                <button class="delete-btn">Delete</button>
+                </div>
+                
+            </div>
+        `;
+
                 dateCard.appendChild(transactionItem);
             });
 
@@ -91,16 +109,32 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Function to convert 'day month year' format to a Date object
+    function parseDate(dateString) {
+        const [day, month, year] = dateString.split(" "); // Split by space
+        return new Date(`${year}-${month}-${day}`); // Convert to 'YYYY-MM-DD' format
+    }
+
     // Filter transactions for the current week
     function filterByWeek() {
         const transactions = getTransactionsForUser();
         const now = new Date();
-        const startOfWeek = new Date(now.setDate(now.getDate() - now.getDay())); // Start of the current week (Sunday)
-        const endOfWeek = new Date(startOfWeek);
-        endOfWeek.setDate(startOfWeek.getDate() + 6); // End of the current week (Saturday)
 
+        // Create a new Date object for startOfWeek, preserving the original 'now' object
+        const startOfWeek = new Date(now);
+        startOfWeek.setDate(now.getDate() - now.getDay()); // Set to the start of the current week (Sunday)
+
+        // Create a new Date object for endOfWeek based on the startOfWeek
+        const endOfWeek = new Date(startOfWeek);
+        endOfWeek.setDate(startOfWeek.getDate() + 6); // Set to the end of the current week (Saturday)
+
+        // Set time to midnight for startOfWeek and endOfWeek for accurate comparison
+        startOfWeek.setHours(0, 0, 0, 0);
+        endOfWeek.setHours(23, 59, 59, 999); // End of the day (Saturday)
+
+        // Filter transactions for the current week
         return transactions.filter(transaction => {
-            const transactionDate = new Date(transaction.date);
+            const transactionDate = parseDate(transaction.date); // Parse the date from 'day month year' format
             return transactionDate >= startOfWeek && transactionDate <= endOfWeek;
         });
     }
@@ -141,10 +175,10 @@ document.addEventListener("DOMContentLoaded", () => {
     function editTransaction(transactionId) {
         const transactions = getTransactionsForUser();
         const transaction = transactions.find(t => String(t.id) === String(transactionId));
-    
+
         if (transaction) {
             localStorage.setItem('transactionToEdit', JSON.stringify(transaction)); // Store transaction in localStorage
-    
+
             // Redirect to the appropriate page
             if (transaction.type === 'expense') {
                 window.location.href = 'addExpenses.html';
@@ -155,7 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Transaction not found!");
         }
     }
-    
+
     // Delete transaction function
     function deleteTransaction(transactionId, transactionElement) {
         const loggedInUser = localStorage.getItem("loggedInUser");
@@ -163,10 +197,10 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("User is not logged in. Please log in first.");
             return;
         }
-    
+
         const userTransactionsKey = `transactions_${loggedInUser}`;
         let storedTransactions = JSON.parse(localStorage.getItem(userTransactionsKey)) || [];
-    
+
         // Find the transaction by ID and remove it
         const index = storedTransactions.findIndex(
             transaction => String(transaction.id) === String(transactionId)
@@ -174,13 +208,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (index !== -1) {
             // Remove the transaction
             storedTransactions.splice(index, 1);
-    
+
             // Update localStorage
             localStorage.setItem(userTransactionsKey, JSON.stringify(storedTransactions));
-    
+
             // Remove the DOM element (optional since we re-render)
             transactionElement.remove();
-    
+
             // Re-render the transactions list to reflect the changes
             renderTransactions(getTransactionsForUser());
         } else {

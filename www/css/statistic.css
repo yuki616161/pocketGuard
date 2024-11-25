@@ -60,6 +60,35 @@ main {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+#categoryPieChart {
+    width: 100% !important;
+    height: auto;
+}
+
+/* Style for the labels under the pie chart */
+.chart-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    margin-right: 8px;
+}
+
 h2 {
     font-size: 1.2rem;
     margin-bottom: 1rem;
@@ -70,6 +99,7 @@ canvas {
     max-width: 100%;
     height: auto;
 }
+
 /* Overall Container */
 .expInc-container {
     margin: 1rem auto;
@@ -79,6 +109,16 @@ canvas {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     padding: 1rem;
+}
+
+#periodSelector {
+    padding: 0.6rem;
+    width: 200px;
+    font-size: 1rem;
+    color: #333;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 /* Tabs Styling */
@@ -138,7 +178,7 @@ canvas {
 /* Transaction Label and Dot */
 .transaction-label {
     display: flex;
-    align-items: center;
+    align-items: left;
     gap: 0.6rem;
 }
 
@@ -150,17 +190,19 @@ canvas {
 }
 
 /* Amount Styling */
-.transaction-amount {
+.transaction-amount .amount {
     font-weight: bold;
     font-size: 1rem;
 }
 
-.expense .transaction-amount {
-    color: #FF4D4D;
+/* Expense amount (red) */
+.transaction-amount.expense {
+    color: #FF5A5F; /* Red for expenses */
 }
 
-.income .transaction-amount {
-    color: #4CAF50;
+/* Income amount (green) */
+.transaction-amount.income {
+    color: #28a745; /* Green for income */
 }
 
 /* Mobile Styling */
@@ -178,16 +220,3 @@ canvas {
         padding: 0.5rem 0;
     }
 }
-
-
-
-
-#periodSelector {
-    padding: 0.6rem;
-    font-size: 1rem;
-    color: #333;
-    background: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-

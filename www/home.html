@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Expense Tracker - Home</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/3e586631e1.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/home.css">
     <script src="javaScript/home.js" defer></script>
 </head>
@@ -14,6 +16,7 @@
 <body>
     <!-- Home Section -->
     <section id="home" class="content-section active">
+
         <div class="welcome-container">
             <div class="profile-container">
                 <!-- Profile image updates based on gender -->
@@ -45,9 +48,20 @@
 
         <!-- Categories Card -->
         <div class="card">
-            <div class="balance-label">Spending by Category</div>
-            <div class="category-list" id="categoryList"></div>
+            <h3>Category Data List</h3>
+            <div id="categoryListContainer"></div>
         </div>
+
+        <div class="recent-transactions-container">
+            <div class="recent-transactions-header">
+                <h3>Recent Transactions</h3>
+                <a href="transactionList.html" class="see-all-button">See All</a>
+            </div>
+            <div id="recentTransactions" class="recent-transactions-list">
+                <!-- Recent transactions will be dynamically populated here -->
+            </div>
+        </div>
+
     </section>
 
     <!-- Loading Animation -->
@@ -61,9 +75,9 @@
             <i class="fas fa-home"></i>
             Home
         </a>
-        <a href="transactionList.html" class="nav-item">
-            <i class="fas fa-exchange-alt"></i>
-            Transactions
+        <a href="goalList.html" class="nav-item">
+            <i class="fas fa-rocket"></i>
+            Goal
         </a>
         <a href="addExpenses.html" class="nav-item">
             <i class="fas fa-plus-circle"></i>
@@ -78,7 +92,7 @@
             Profile
         </a>
     </nav>
-    
+
 </body>
 
 </html>
