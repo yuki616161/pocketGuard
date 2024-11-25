@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Retrieve user data from localStorage
-    const userRegistrationData = JSON.parse(localStorage.getItem('userRegistrationData')) || {};
+    const userRegistrationData = JSON.parse(localStorage.getItem('loggedInUser')) || {};
 
     // Extract profile details
     const {

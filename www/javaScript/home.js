@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadingElement.style.display = "block";
 
     // Retrieve user data from localStorage
-    const userRegistrationData = JSON.parse(localStorage.getItem('userRegistrationData')) || {};
+    const userRegistrationData = JSON.parse(localStorage.getItem('loggedInUser')) || {};
     const username = userRegistrationData.username || "User";
     const gender = userRegistrationData.gender || "default";
 
