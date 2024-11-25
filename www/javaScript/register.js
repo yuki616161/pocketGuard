@@ -1,17 +1,3 @@
-// Toggle Password Visibility
-const togglePassword = document.querySelector('#togglePassword');
-const passwordInput = document.querySelector('#password');
-
-togglePassword.addEventListener('click', function () {
-    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-    passwordInput.setAttribute('type', type);
-
-    // Toggle icon and update aria-label
-    this.classList.toggle('bi-eye');
-    this.classList.toggle('bi-eye-slash');
-    this.setAttribute('aria-label', type === 'password' ? 'Show Password' : 'Hide Password');
-});
-
 const form = document.getElementById('registerForm');
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -22,6 +8,15 @@ form.addEventListener('submit', (e) => {
     const username = document.getElementById('username').value.trim();
     const firstName = document.getElementById('firstName').value.trim();
     const lastName = document.getElementById('lastName').value.trim();
+
+    // Get selected gender
+    const gender = document.querySelector('input[name="gender"]:checked')?.value;
+
+    // Check if gender is selected
+    if (!gender) {
+        alert('Please select your gender.');
+        return;
+    }
 
     // Get existing users
     const users = JSON.parse(localStorage.getItem('users')) || {};
@@ -37,6 +32,8 @@ form.addEventListener('submit', (e) => {
         username,
         firstName,
         lastName,
+        email,
+        gender, // Save gender
         password, // For security, use a hashed password in production
         transactions: [],
         hasSeenWelcome: false
@@ -44,6 +41,9 @@ form.addEventListener('submit', (e) => {
 
     localStorage.setItem('users', JSON.stringify(users));
 
+    // Store the registered user as the logged-in user
+    localStorage.setItem('loggedInUser', JSON.stringify(users[email]));
+    
     alert('Registration successful! You can now log in.');
     window.location.href = 'index.html'; // Redirect to login page
 });
