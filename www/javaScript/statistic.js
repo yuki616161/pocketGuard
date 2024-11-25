@@ -8,10 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const userTransactionsKey = `transactions_${loggedInUser}`;
     const transactions = JSON.parse(localStorage.getItem(userTransactionsKey)) || [];
 
-    if (transactions.length === 0) {
-        alert("No transactions found for the logged-in user.");
-        return;
-    }
 
     let pieChart, barChart; // Store chart instances for updates
 

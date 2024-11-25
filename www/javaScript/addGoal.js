@@ -48,31 +48,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     goalForm.addEventListener('submit', (e) => {
         e.preventDefault();
-
+    
         // Get form values
         const goalName = document.getElementById('goalName').value;
         const goalCategory = dropdownBtn.textContent;
         const targetAmount = parseFloat(document.getElementById('targetAmount').value);
         const currentAmount = parseFloat(document.getElementById('currentAmount').value);
         const deadline = document.getElementById('deadline').value;
-
+    
         // Validation
         if (!goalName || !goalCategory || isNaN(targetAmount) || isNaN(currentAmount) || !deadline) {
             alert('Please fill out all fields');
             return;
         }
-
+    
+        // Get logged-in user data
+        const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+        if (!loggedInUser) {
+            alert('Please log in first');
+            return;
+        }
+        
         const goal = {
             id: goalId || Date.now().toString(), // Use existing goal ID if editing, otherwise generate new ID
+            userId: loggedInUser.username, // Add the logged-in user's username
             name: goalName,
             category: goalCategory,
             targetAmount,
             currentAmount,
             deadline
         };
-
+    
         const goals = JSON.parse(localStorage.getItem('goals')) || [];
-
+    
         if (goalId) {
             // Edit mode: update the existing goal
             const updatedGoals = goals.map(g => g.id === goalId ? goal : g);
@@ -84,8 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('goals', JSON.stringify(goals));
             alert('Goal added successfully!');
         }
-
+    
         // Redirect to the goals list page after adding/editing
         window.location.href = 'goalList.html';
     });
+    
 });

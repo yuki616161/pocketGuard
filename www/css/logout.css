@@ -154,3 +154,19 @@ a {
     /* Add spacing between the icon and the text */
     color: #777;
 }
+
+.clear-storage-button {
+    margin-top: 10px;
+    background-color: #f39c12; /* Use a different color for clarity */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.clear-storage-button:hover {
+    background-color: #e67e22; /* Darker shade when hovered */
+}
