@@ -58,17 +58,18 @@ window.addEventListener("click", function (event) {
 });
        
 function toggleIncomeCategoryGrid() {
-    const categoryGrid = document.getElementById('incomeCategoryGrid');
-    categoryGrid.style.display = categoryGrid.style.display === 'none' || categoryGrid.style.display === ''
-    ? 'block' : 'none';
+    var dropdown = document.getElementById("categoryDropdown");
+    if (dropdown.style.display === "block") {
+        dropdown.style.display = "none";
+    } else {
+        dropdown.style.display = "block";
+    }
 }
-    
+
 function selectIncomeCategory(category) {
-    const button = document.getElementById('incomeCategoryBtn');
-    button.textContent = category; // Set the selected category as the button text
-    document.getElementById('incomeCategoryGrid').style.display = 'none'; // Hide the dropdown
-}
-          
+    document.getElementById("incomeCategoryBtn").textContent = category;
+    document.getElementById("categoryDropdown").style.display = "none";
+} 
        
 //Account Grid
 function toggleAccountGrid() {

@@ -1,330 +1,286 @@
 /* Container */
 .container {
-    width: 100%;
-    max-width: 400px;
-    background: #ffffff;
-    padding: 80px 30px 30px; /* Add 80px for header space */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  .headerMain {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 16px;
-    background-color: white;
-    border-bottom: 1px solid #f0f0f0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-  }
-  
-  .back-button {
-    border: none;
-    background: none;
-    cursor: pointer;
-    padding: 8px;
-    color: #000;
-    font-size: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  a {
-    text-decoration: none;
-  }
-  
-  .title {
-    font-size: 18px;
-    font-weight: 500;
-    color: #1e1e1e;
-    flex-grow: 1;
-    text-align: center;
-    margin: 0 16px;
-  }
-  
-  /* Header Container */
-  .header {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 5px;
-    max-width: 400px;
-    margin: 0 auto;
-    border-radius: 18px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    z-index: 999;
-  }
-  
-  /* Tab Buttons */
-  .header .tab {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 10px 30px;
-    font-size: 18px;
-    font-weight: 700;
-    color: #191717;
-    background-color: #fff;
-    border: none;
-    border-radius: 18px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-  }
-  
-  /* Tab Icons */
-  .tab-icon {
-    width: 25px;
-    height: 25px;
-    margin-right: 6px;
-  }
-  
-  /* Active Tab with Gradient */
-  .header .tab.active {
-    background: linear-gradient(135deg, #5A6FE0, #F49A73);
-    color: #fff;
-    box-shadow: 0 4px 8px rgba(244, 154, 115, 0.3);
-  }
-  
-  .header a {
-    text-decoration: none; /* Removes the underline from the links within the header */
-  }
-  
-  /* Hover Effect */
-  .header .tab:hover {
-    background-color: #d6dcfa;
-  }
-  
-  /* Active Indicator Bar */
-  .header .tab.active::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: -5px;
-    transform: translateX(-50%);
-    width: 40%;
-    height: 3px;
-    background: #FF7F50;
-    border-radius: 3px;
-  }
-  
-  /* Button Transition Effect */
-  .header .tab.active {
-    transform: translateY(-2px);
-    border-radius: 20px;
-  }
-  
-  /* Form Input Styling */
-  .input-group {
-    margin-bottom: 15px;
-    position: relative;
-  }
-  
-  .input-group label {
-    display: block;
-    color: #5A6FE0;
-    font-size: 17px;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .input-group input,
-  .input-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    background-color: #f4f6fa;
-    color: #333;
-    font-size: 15px;
-    transition: border 0.3s ease;
-  }
-  
-  .input-group input:focus,
-  .input-group textarea:focus {
-    border-color: #5A6FE0;
-    box-shadow: 0 0 8px rgba(90, 111, 224, 0.2);
-  }
-  
-  /* Calculator Styling */
-  .calculator {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    display: none;
-  }
-  
-  .calculator button {
-    flex: 1;
-    padding: 15px;
-    font-size: 18px;
-    margin: 2px;
-    border-radius: 8px;
-    background: #5A6FE0;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .calculator button:hover {
-    background: #FF7F50;
-  }
-  
-  /* Dropdown container */
-  .dropdown {
-    position: relative;
-    width: 100%;
-  }
-  
-  /* Dropdown button styling */
-  .dropdown-btn {
-    width: 100%;
-    padding: 12px;
-    background-color: #f6f7f9;
-    border: 1px solid #ddd;
-    text-align: left;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  /* Dropdown menu styling */
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    width: 100%;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    z-index: 1;
-    max-height: 400px;
-    overflow-y: auto;
-  }
-  
-  /* Show dropdown when button is clicked */
-  .dropdown:hover .dropdown-menu {
-    display: block;
-  }
-  
-  /* Grid layout for categories */
-  .category-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns by default */
-    gap: 15px;
-    padding: 10px;
-  }
-  
-  /* Category item (card) styling */
-  .category-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  
-  /* Icon and text */
-  .category-icon {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 10px;
-  }
-  
-  /* Text styling */
-  .category-item span {
-    font-size: 14px;
-    text-align: center;
-    color: #333;
-  }
-  
-  /* Hover effect */
-  .category-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Responsive design: 2 columns for smaller screens */
-  @media (max-width: 768px) {
-    .category-grid {
-      grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
-    }
-  }
-  
-  /*Account Grids */
+  width: 100%;
+  max-width: 400px;
+  background: #ffffff;
+  padding: 80px 30px 30px;
+  /* Add 80px for header space */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.headerMain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: white;
+  border-bottom: 1px solid #f0f0f0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.back-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 8px;
+  color: #000;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #1e1e1e;
+  flex-grow: 1;
+  text-align: center;
+  margin: 0 16px;
+}
+
+/* Header Container */
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 5px;
+  max-width: 400px;
+  margin: 0 auto;
+  border-radius: 18px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  z-index: 999;
+}
+
+/* Tab Buttons */
+.header .tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px 30px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #191717;
+  background-color: #fff;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Tab Icons */
+.tab-icon {
+  width: 25px;
+  height: 25px;
+  margin-right: 6px;
+}
+
+/* Active Tab with Gradient */
+.header .tab.active {
+  background: linear-gradient(135deg, #5A6FE0, #F49A73);
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(244, 154, 115, 0.3);
+}
+
+.header a {
+  text-decoration: none;
+  /* Removes the underline from the links within the header */
+}
+
+/* Hover Effect */
+.header .tab:hover {
+  background-color: #d6dcfa;
+}
+
+/* Active Indicator Bar */
+.header .tab.active::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 3px;
+  background: #FF7F50;
+  border-radius: 3px;
+}
+
+/* Button Transition Effect */
+.header .tab.active {
+  transform: translateY(-2px);
+  border-radius: 20px;
+}
+
+/* Form Input Styling */
+.input-group {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.input-group label {
+  display: block;
+  color: #5A6FE0;
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: #f4f6fa;
+  color: #333;
+  font-size: 15px;
+  transition: border 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  border-color: #5A6FE0;
+  box-shadow: 0 0 8px rgba(90, 111, 224, 0.2);
+}
+
+/* Calculator Styling */
+.calculator {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  display: none;
+}
+
+.calculator button {
+  flex: 1;
+  padding: 15px;
+  font-size: 18px;
+  margin: 2px;
+  border-radius: 8px;
+  background: #5A6FE0;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.calculator button:hover {
+  background: #FF7F50;
+}
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  width: 100%;
+}
+
+/* Dropdown button styling */
+.dropdown-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #f6f7f9;
+  border: 1px solid #ddd;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  z-index: 1;
+  max-height: 400px;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Category item and Account item styling */
+.category-item,
+.account-item {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Hover effect for category and account items */
+.category-item:hover,
+.account-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Category and Account icon styling */
+.category-icon,
+.account-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+/* Arrow icon for dropdown button */
+.arrow-icon {
+  font-size: 18px;
+  color: #333;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .category-grid,
   .account-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    padding: 10px;
-    background: #f4f6fa;
-    border-radius: 15px;
-    display: none;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 columns on mobile */
   }
-  
-  .account-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  
-  .account-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(90, 111, 224, 0.2);
-  }
-  
-  /* Image Styling */
-  .account-item img {
-    width: 50px;
-    height: 50px;
-    border-radius: 8px;
-    margin-bottom: 8px;
-  }
-  
-  .account-item p {
-    font-size: 14px;
-    color: #333;
-    font-weight: bold;
-  }
-  
-  /* Save Button */
-  .btn-login {
-    width: 100%;
-    padding: 14px;
-    margin-top: 15px;
-    font-weight: bold;
-    color: #fff;
-    background: linear-gradient(to right, #5A6FE0, #FF7F50);
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s;
-  }
-  
-  .btn-login:hover {
-    opacity: 0.8;
-  }
-  
-  
-  
+}
+
+.account-grid {
+  display: none; /* Hide by default */
+  gap: 10px;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  z-index: 1;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Save Button */
+.btn-login {
+  width: 100%;
+  padding: 14px;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(to right, #5A6FE0, #FF7F50);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.btn-login:hover {
+  opacity: 0.8;
+}
