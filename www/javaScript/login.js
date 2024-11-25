@@ -81,8 +81,10 @@ function authenticateUser(email, password) {
             // Redirect based on whether the welcome page has been seen
             if (!user.hasSeenWelcome) {
                 user.hasSeenWelcome = true;
-                users[email] = user; // Update user data
-                localStorage.setItem('users', JSON.stringify(users));
+                localStorage.setItem('loggedInUser', JSON.stringify(user)); // Save logged-in user
+                users[email] = user; // Update all users
+                localStorage.setItem('users', JSON.stringify(users)); // Save all users
+
                 window.location.href = 'welcome.html';
             } else {
                 window.location.href = 'home.html';
