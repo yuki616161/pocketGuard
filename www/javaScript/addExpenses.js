@@ -66,6 +66,19 @@ window.addEventListener("click", function (event) {
     }
 });
 
+function toggleCategoryDropdown() {
+    var dropdown = document.getElementById("categoryDropdown");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+  }
+  
+  function selectCategory(category) {
+    // Update button text with selected category
+    document.querySelector(".dropdown-btn").textContent = category;
+  
+    // Close dropdown after selection
+    document.getElementById("categoryDropdown").style.display = "none";
+  }   
+  
 //Account Grid
 function toggleAccountGrid() {
     const accountGrid = document.getElementById('accountGrid');
