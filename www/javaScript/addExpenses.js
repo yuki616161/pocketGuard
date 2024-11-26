@@ -177,6 +177,7 @@ function saveExpenseData() {
         }
     } else {
         saveTransaction(expenseData); // Handle as a new transaction if no edit data exists
+        alert("Expense added successfully!"); // Success alert for new expenses
     }
 
     localStorage.removeItem('transactionToEdit'); // Clear the edit flag
