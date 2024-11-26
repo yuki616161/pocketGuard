@@ -152,6 +152,7 @@ if (validationErrors.length > 0) {
         }
     } else {
         saveTransaction(incomeData); // Handle as a new transaction if no edit data exists
+        alert("Income added successfully!"); // Success alert for new expenses
     }
 
     localStorage.removeItem('transactionToEdit'); // Clear the edit flag
