@@ -129,14 +129,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (button.classList.contains('delete-btn')) {
             if (confirm('Are you sure you want to delete this goal?')) {
+                // Find the index of the goal to be deleted in the userGoals array
                 const index = userGoals.findIndex(g => g.id === goalId);
                 if (index > -1) {
+                    // Remove the goal from userGoals array
                     userGoals.splice(index, 1);
-                    localStorage.setItem('goals', JSON.stringify(goals)); // Update the full goals list in localStorage
-                    renderGoals(); // Re-render goals
+        
+                    // Now update the full goals list in localStorage
+                    const updatedGoals = JSON.parse(localStorage.getItem('goals')) || [];
+                    // Remove the deleted goal from the main goals list
+                    const newGoals = updatedGoals.filter(goal => goal.id !== goalId);
+                    
+                    // Save the updated list to localStorage
+                    localStorage.setItem('goals', JSON.stringify(newGoals));
+        
+                    // Re-render goals
+                    renderGoals();
                 }
             }
-        } else if (button.classList.contains('edit-btn')) {
+        }
+         else if (button.classList.contains('edit-btn')) {
             window.location.href = `addGoal.html?id=${goalId}`;
         }
     });
