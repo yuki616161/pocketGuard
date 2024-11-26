@@ -204,6 +204,31 @@ canvas {
 .transaction-amount.income {
     color: #28a745; /* Green for income */
 }
+.chart-toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.toggle-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #f0f0f0;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.toggle-button.active {
+    background: #5A6FE0;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
 
 /* Mobile Styling */
 @media (max-width: 768px) {

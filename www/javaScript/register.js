@@ -46,4 +46,21 @@ form.addEventListener('submit', (e) => {
     
     alert('Registration successful! You can now log in.');
     window.location.href = 'index.html'; // Redirect to login page
+    
 });
+
+// Select the toggle password icon and the password input field
+const togglePassword = document.getElementById('togglePassword');
+const passwordField = document.getElementById('password');
+
+// Add a click event listener to the toggle button
+togglePassword.addEventListener('click', () => {
+    // Check the current type of the password field and toggle it
+    const type = passwordField.type === 'password' ? 'text' : 'password';
+    passwordField.type = type;
+
+    // Change the icon based on the current type (eye or eye-slash)
+    togglePassword.classList.toggle('bi-eye');
+    togglePassword.classList.toggle('bi-eye-slash');
+});
+
