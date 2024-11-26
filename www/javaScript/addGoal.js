@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Please log in first');
             return;
         }
-        
+    
         const goal = {
             id: goalId || Date.now().toString(), // Use existing goal ID if editing, otherwise generate new ID
             userId: loggedInUser.username, // Add the logged-in user's username
