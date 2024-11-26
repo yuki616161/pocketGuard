@@ -12,9 +12,9 @@ form.addEventListener('submit', (e) => {
     // Get selected gender
     const gender = document.querySelector('input[name="gender"]:checked')?.value;
 
-    // Check if gender is selected
-    if (!gender) {
-        alert('Please select your gender.');
+    // Check if all required inputs are filled
+    if (!email || !password || !username || !firstName || !lastName || !gender) {
+        alert('Please fill in all fields.');
         return;
     }
 
@@ -46,7 +46,6 @@ form.addEventListener('submit', (e) => {
     
     alert('Registration successful! You can now log in.');
     window.location.href = 'index.html'; // Redirect to login page
-    
 });
 
 // Select the toggle password icon and the password input field
@@ -63,4 +62,3 @@ togglePassword.addEventListener('click', () => {
     togglePassword.classList.toggle('bi-eye');
     togglePassword.classList.toggle('bi-eye-slash');
 });
-
