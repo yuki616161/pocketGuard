@@ -36,11 +36,38 @@
       <label>Amount</label>
       <input type="text" id="amount" placeholder="Amount" onclick="showCalculator()" readonly>
     </div>
+    <!-- Calculator -->
+    <div id="calculator" class="calculator mt-3">
+      <div class="row">
+        <button class="number" onclick="inputKeypad('7')">7</button>
+        <button class="number" onclick="inputKeypad('8')">8</button>
+        <button class="number" onclick="inputKeypad('9')">9</button>
+        <button class="operation" onclick="inputKeypad('+')">+</button>
+      </div>
+      <div class="row">
+        <button class="number" onclick="inputKeypad('4')">4</button>
+        <button class="number" onclick="inputKeypad('5')">5</button>
+        <button class="number" onclick="inputKeypad('6')">6</button>
+        <button class="operation" onclick="inputKeypad('-')">-</button>
+      </div>
+      <div class="row">
+        <button class="number" onclick="inputKeypad('1')">1</button>
+        <button class="number" onclick="inputKeypad('2')">2</button>
+        <button class="number" onclick="inputKeypad('3')">3</button>
+        <button class="operation" onclick="inputKeypad('*')">×</button>
+      </div>
+      <div class="row">
+        <button class="number" onclick="inputKeypad('0')">0</button>
+        <button class="number" onclick="clearKeypad()">C</button>
+        <button class="operation" onclick="calculateKeypad()">=</button>
+        <button class="operation" onclick="inputKeypad('/')">÷</button>
+      </div>
+    </div>
 
     <div class="input-group">
       <label>Category</label>
       <div class="dropdown">
-        <button class="dropdown-btn" onclick="toggleCategoryDropdown()">Select Category</button>
+        <button id="expenseCategoryBtn" class="dropdown-btn" onclick="toggleCategoryDropdown()">Select Category</button>
         <div id="categoryDropdown" class="dropdown-menu">
           <div class="category-grid">
             <!-- Category items -->
@@ -108,61 +135,30 @@
         </div>
       </div>
     </div>
-    
-    
+
     <div class="input-group">
       <label>Account</label>
       <input type="text" id="selectedAccount" placeholder="Select Account" onclick="toggleAccountGrid()" readonly>
+      <div id="accountGrid" class="account-grid">
+        <div class="account-item" data-account="Cash" onclick="selectAccount('Cash', 'images/dollar.png')">
+          <img src="images/dollar.png" alt="CashIcon">
+          <p>Cash</p>
+        </div>
+        <div class="account-item" data-account="Bank Account"
+          onclick="selectAccount('Bank Account', 'images/bank.png')">
+          <img src="images/bank.png" alt="BankIcon">
+          <p>Bank Account</p>
+        </div>
+        <div class="account-item" data-account="Card" onclick="selectAccount('Card', 'images/credit.png')">
+          <img src="images/credit.png" alt="CardIcon">
+          <p>Card</p>
+        </div>
+      </div>
     </div>
-    
-    <!-- Account Selection Grid Dropdown -->
-    <div id="accountGrid" class="account-grid">
-      <div class="account-item" data-account="Cash" onclick="selectAccount('Cash', 'images/dollar.png')">
-        <img src="images/dollar.png" alt="CashIcon">
-        <p>Cash</p>
-      </div>
-      <div class="account-item" data-account="Bank Account" onclick="selectAccount('Bank Account', 'images/bank.png')">
-        <img src="images/bank.png" alt="BankIcon">
-        <p>Bank Account</p>
-      </div>
-      <div class="account-item" data-account="Card" onclick="selectAccount('Card', 'images/credit.png')">
-        <img src="images/credit.png" alt="CardIcon">
-        <p>Card</p>
-      </div>
-    </div>
-    
 
     <div class="input-group">
       <label>Description</label>
       <input type="text" placeholder="Description" id="Description">
-    </div>
-
-    <!-- Calculator -->
-    <div id="calculator" class="calculator mt-3">
-      <div class="row">
-        <button class="number" onclick="inputKeypad('7')">7</button>
-        <button class="number" onclick="inputKeypad('8')">8</button>
-        <button class="number" onclick="inputKeypad('9')">9</button>
-        <button class="operation" onclick="inputKeypad('+')">+</button>
-      </div>
-      <div class="row">
-        <button class="number" onclick="inputKeypad('4')">4</button>
-        <button class="number" onclick="inputKeypad('5')">5</button>
-        <button class="number" onclick="inputKeypad('6')">6</button>
-        <button class="operation" onclick="inputKeypad('-')">-</button>
-      </div>
-      <div class="row">
-        <button class="number" onclick="inputKeypad('1')">1</button>
-        <button class="number" onclick="inputKeypad('2')">2</button>
-        <button class="number" onclick="inputKeypad('3')">3</button>
-        <button class="operation" onclick="inputKeypad('*')">×</button>
-      </div>
-      <div class="row">
-        <button class="number" onclick="inputKeypad('0')">0</button>
-        <button class="number" onclick="clearKeypad()">C</button>
-        <button class="operation" onclick="calculateKeypad()">=</button>
-        <button class="operation" onclick="inputKeypad('/')">÷</button>
-      </div>
     </div>
 
     <button onclick="saveExpenseData()" type="submit" class="btn btn-login">Save Expense</button>
