@@ -44,12 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (timeRemaining.isExpired) {
             return `<span class="countdown" style="color: #e74c3c;">Expired</span>`;
         }
-        if (timeRemaining.days === 1) {
-            return `<span class="countdown">Due today!</span>`;
-        }
-        if (timeRemaining.days === 2) {
-            return `<span class="countdown">Due tomorrow</span>`;
-        }
+        
         return `<span class="countdown">${timeRemaining.days} days ${timeRemaining.hours} hours left</span>`;
     }
 

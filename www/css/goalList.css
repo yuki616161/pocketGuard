@@ -61,6 +61,21 @@ a {
     margin: 0 16px;
 }
 
+button {
+    font-size: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    outline: none; /* Remove outline from button */
+}
+
+button:active {
+    outline: none; /* Ensure no outline when clicked */
+}
+
 /* Header */
 h1 {
     color: #34495e;
