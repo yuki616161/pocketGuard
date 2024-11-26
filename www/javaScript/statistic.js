@@ -26,6 +26,29 @@ document.addEventListener('DOMContentLoaded', () => {
             return acc;
         }, {});
     }
+    // Function to filter transactions by type
+    function filterByType(transactions, type) {
+        return transactions.filter(transaction => transaction.type === type);
+    }
+
+    // Event listeners for the toggle buttons
+    const showExpensesButton = document.getElementById('showExpenses');
+    const showIncomeButton = document.getElementById('showIncome');
+
+    showExpensesButton.addEventListener('click', () => {
+        showExpensesButton.classList.add('active');
+        showIncomeButton.classList.remove('active');
+        const filteredExpenses = filterByType(transactions, 'expense');
+        drawCharts(filteredExpenses);
+    });
+
+    showIncomeButton.addEventListener('click', () => {
+        showIncomeButton.classList.add('active');
+        showExpensesButton.classList.remove('active');
+        const filteredIncome = filterByType(transactions, 'income');
+        drawCharts(filteredIncome);
+    });
+
 
     function drawCharts(transactions) {
         // Pie Chart
