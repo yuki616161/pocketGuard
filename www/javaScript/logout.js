@@ -32,12 +32,5 @@ $(document).ready(() => {
         window.location.href = 'index.html'; // Redirect to login page
     });
 
-    // Clear Local Storage functionality
-    $("#clearStorageButton").on("click", () => {
-        if (confirm("Are you sure you want to clear all data from local storage?")) {
-            localStorage.clear();
-            alert("Local storage has been cleared.");
-            window.location.href = 'index.html'; // Redirect to login page or home
-        }
-    });
+
 });

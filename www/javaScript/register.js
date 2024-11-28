@@ -12,9 +12,25 @@ form.addEventListener('submit', (e) => {
     // Get selected gender
     const gender = document.querySelector('input[name="gender"]:checked')?.value;
 
+    // Email and password validation patterns
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
     // Check if all required inputs are filled
     if (!email || !password || !username || !firstName || !lastName || !gender) {
         alert('Please fill in all fields.');
+        return;
+    }
+
+    // Validate email format
+    if (!emailPattern.test(email)) {
+        alert('Invalid email format.');
+        return;
+    }
+
+    // Validate password strength
+    if (!passwordPattern.test(password)) {
+        alert('Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, and one number.');
         return;
     }
 
